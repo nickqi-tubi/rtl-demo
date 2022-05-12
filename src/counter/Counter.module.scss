@@ -1,0 +1,12 @@
+.root {
+	display: flex;
+	align-items: center;
+
+	& > * {
+		flex: 1
+	}
+}
+
+.count {
+	margin: 0 1rem;
+}
