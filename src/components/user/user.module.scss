@@ -1,0 +1,14 @@
+.root {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 3rem;
+}
+
+.user {
+	margin-bottom: 0.5rem;
+
+	span {
+		margin-right: 1rem;
+	}
+}
