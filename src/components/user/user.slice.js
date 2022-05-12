@@ -1,13 +1,15 @@
+import { API_BASE_URL } from 'constants';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const name = 'user';
 
 export const fetchUser = createAsyncThunk(`${name}/fetchUser`, async () => {
+  // const randomUserId = 1;
   const randomUserId = Math.floor(Math.random() * 10) + 1;
-  const resp = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${randomUserId}`
-  ).then((data) => data.json());
-  return resp;
+  const res = await fetch(`${API_BASE_URL}/users/${randomUserId}`).then(
+    (data) => data.json()
+  );
+  return res;
 });
 
 export default createSlice({
