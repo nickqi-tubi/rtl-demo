@@ -1,19 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import userApi from './user.api';
-
 const name = 'user';
 
 export const fetchUser = createAsyncThunk(`${name}/fetchUser`, async () => {
-  const response = await userApi.fetchUser();
-  return response.data;
+  const randomUserId = Math.floor(Math.random() * 10) + 1;
+  const resp = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${randomUserId}`
+  ).then((data) => data.json());
+  return resp;
 });
 
 export default createSlice({
   name,
 
   initialState: {
-    name: 'No user',
+    user: null,
     status: 'idle',
   },
 

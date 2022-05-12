@@ -11,7 +11,7 @@ const User = () => {
   return (
     <div className={styles.root}>
       <div className={styles.user}>
-        <span>{user}</span>
+        <span>{user ? user.name : 'No user'}</span>
         <button onClick={() => dispatch(fetchUser())}>Fetch user</button>
       </div>
       {userFetchStatus === 'loading' && <div>Fetching user...</div>}
