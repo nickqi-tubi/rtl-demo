@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 
 import User from './User.component';
-import { getUser200, getSpecificUser200 } from 'mocks/handlers';
+import { getUser200, getSpecificUser200, getUser500 } from 'mocks/handlers';
 import { render, screen, waitFor } from 'utils/test';
 import { server } from 'mocks/server';
 
@@ -33,6 +33,19 @@ describe('<User />', () => {
     );
     await waitFor(() => {
       expect(screen.getByText('Nick Qi')).toBeInTheDocument();
+    });
+  });
+
+  it('should show error msg if API responds non-200s', async () => {
+    server.use(getUser500);
+    render(<User />);
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Fetch user',
+      })
+    );
+    await waitFor(() => {
+      expect(screen.getByText(/Please try again later/)).toBeInTheDocument();
     });
   });
 });

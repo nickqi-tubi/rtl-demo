@@ -15,6 +15,11 @@ const User = () => {
         <button onClick={() => dispatch(fetchUser())}>Fetch user</button>
       </div>
       {userFetchStatus === 'loading' && <div>Fetching user...</div>}
+      {userFetchStatus === 'failed' && (
+        <div className={styles.error}>
+          Error occurs. Please try again later.
+        </div>
+      )}
     </div>
   );
 };
