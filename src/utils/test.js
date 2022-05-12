@@ -1,25 +1,13 @@
 import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
 
-import userSlice from 'components/user/user.slice';
+import AllProviders from 'components/allProviders';
 
-const render = (
-  ui,
-  {
-    preloadedState,
-    store = configureStore({
-      reducer: { user: userSlice.reducer },
-      preloadedState,
-    }),
-    ...renderOptions
-  } = {}
-) => {
+const render = (ui, options) => {
   const Wrapper = ({ children }) => {
-    return <Provider store={store}>{children}</Provider>;
+    return <AllProviders>{children}</AllProviders>;
   };
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  return rtlRender(ui, { wrapper: Wrapper, ...options });
 };
 
 // re-export everything
