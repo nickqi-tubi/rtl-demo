@@ -1,4 +1,4 @@
-import Counter from 'counter/Counter.component';
+import Counter from 'components/counter/Counter.component';
 import styles from './App.module.scss';
 
 const App = () => (
