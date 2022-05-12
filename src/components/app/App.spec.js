@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
 import App from './App.component';
+import { render, screen } from 'utils/test';
 
 describe('<App />', () => {
   it('should render App with heading', () => {
