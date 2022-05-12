@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 
 import User from './User.component';
-import { getUser200 } from 'mocks/handlers';
+import { getUser200, getSpecificUser200 } from 'mocks/handlers';
 import { render, screen, waitFor } from 'utils/test';
 import { server } from 'mocks/server';
 
@@ -20,6 +20,19 @@ describe('<User />', () => {
     expect(screen.getByText('Fetching user...')).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.queryByText('No user')).not.toBeInTheDocument();
+    });
+  });
+
+  it('should fetch specific user data', async () => {
+    server.use(getSpecificUser200);
+    render(<User />);
+    userEvent.click(
+      screen.getByRole('button', {
+        name: 'Fetch user',
+      })
+    );
+    await waitFor(() => {
+      expect(screen.getByText('Nick Qi')).toBeInTheDocument();
     });
   });
 });

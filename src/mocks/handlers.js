@@ -11,6 +11,13 @@ export const getUser200 = rest.get(
   }
 );
 
+export const getSpecificUser200 = rest.get(
+  `${API_BASE_URL}/users/:userId`,
+  (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(mockUsers[0]));
+  }
+);
+
 const handlers = [getUser200];
 
 export default handlers;
