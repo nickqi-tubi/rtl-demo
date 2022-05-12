@@ -4,7 +4,7 @@ import styles from './App.module.scss';
 const App = () => (
   <div className={styles.root}>
     <h1>RTL Demo</h1>
-    <Counter />
+    <Counter initialCount={1} />
   </div>
 );
 
